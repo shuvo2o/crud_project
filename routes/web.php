@@ -4,9 +4,10 @@ use Inertia\Inertia;
 use App\Models\Skill;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\ProjectController;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -29,11 +30,22 @@ Route::middleware('auth')->group(function () {
 
 
 // All Routes
-Route::get('admin/skill', [SkillController::class, 'Index'] )->name('skill.index');
-Route::get('admin/skill/create', [SkillController::class, 'SkillCreate'] )->name('skill.create');
-Route::post('admin/skill/store', [SkillController::class, 'SkillStore'] )->name('skill.store');
-Route::get('admin/skill/edit/{skill}', [SkillController::class, 'SkillEdit'] )->name('skill.edit');
+Route::get('admin/skill', [SkillController::class, 'Index'])->name('skill.index');
+Route::get('admin/skill/create', [SkillController::class, 'SkillCreate'])->name('skill.create');
+Route::post('admin/skill/store', [SkillController::class, 'SkillStore'])->name('skill.store');
+Route::get('admin/skill/edit/{skill}', [SkillController::class, 'SkillEdit'])->name('skill.edit');
 Route::put('admin/skill/update/{skill}', [SkillController::class, 'SkillUpdate'])->name('skill.update');
 Route::delete('admin/skill/delete/{skill}', [SkillController::class, 'SkillDelete'])->name('skill.delete');
 
-require __DIR__.'/auth.php';
+
+// Project All Route
+
+Route::get('admin/project', [ProjectController::class, 'Index'])->name('project.index');
+Route::get('admin/project/create', [ProjectController::class, 'ProjectCreate'])->name('project.create');
+Route::post('admin/project/store', [ProjectController::class, 'ProjectStore'])->name('project.store');
+Route::get('admin/project/edit/{project}', [ProjectController::class, 'ProjectEdit'])->name('project.edit');
+Route::put('admin/project/update/{project}', [ProjectController::class, 'ProjectUpdate'])->name('project.update');
+Route::delete('admin/project/delete/{project}', [ProjectController::class, 'ProjectDelete'])->name('project.delete');
+
+
+require __DIR__ . '/auth.php';

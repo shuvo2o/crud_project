@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 
-use function Termwind\render;
-
 class SkillController extends Controller
 {
     public function Index()
     {
+        
         $skills = Skill::all();
+
         return Inertia::render('Skill/Index', ['skills' => $skills]);
     }
     public function SkillCreate()
@@ -100,4 +100,6 @@ class SkillController extends Controller
         $skill->delete();
         return Redirect::route('skill.index');
     }
+
+    
 }
